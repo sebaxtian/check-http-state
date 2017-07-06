@@ -1,0 +1,27 @@
+{
+  "name": "check-http-state",
+  "version": "1.0.0",
+  "description": "Permite conocer el estado de respuesta de una peticion HTTP.",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/sebaxtian/check-http-state.git"
+  },
+  "keywords": [
+    "HTTP",
+    "State",
+    "GOT",
+    "Request",
+    "Response",
+    "Code"
+  ],
+  "author": "Sebastian Rios Sabogal",
+  "license": "MIT",
+  "dependencies": {
+    "got": "^7.1.0",
+    "nodemailer": "^4.0.1"
+  }
+}
