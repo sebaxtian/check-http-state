@@ -2,6 +2,10 @@
 
 module.exports.auth = {
     /**
+     * Name
+     */
+    name: 'Usuario',
+    /**
      * User
      */
     user: 'usuario@gmail.com',
