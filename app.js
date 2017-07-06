@@ -4,6 +4,15 @@ const moment = require('moment');
 const gmail = require("./credenciales/gmail.js");
 const fs = require('fs');
 
+
+// Path del directorio de archivos Log
+let pathDirLogs = './logs/';
+// Archivo de Log
+let logFile = 'check-0.log';
+// Configuracion de archivo Log
+loadFileLog();
+
+
 // Lista de sitios web objetivo para realizar peticiones
 let targetSites = ['http://www.geoprocess.com.co/', 'http://www.gis-data.co/'];
 
@@ -74,17 +83,15 @@ function sendEmail(para, asunto, mensaje) {
     });
 }
 
-// Funcion que escribe un mensaje sobre un archivo de Log
-function saveLog(mensaje) {
-    // Path del directorios de archivos Log
-    let pathDirLogs = './logs/';
+// Funcion que configura el archivo de Log que sera escrito
+function loadFileLog() {
     // Archivos del directorio de Logs ordenados por fecha de modificacion
     let logFiles = fs.readdirSync(pathDirLogs);
     logFiles.sort(function(a, b) {
         return fs.statSync(pathDirLogs + a).mtime.getTime() - fs.statSync(pathDirLogs + b).mtime.getTime();
     });
     // Obtiene el ultimo archivo modificado
-    let logFile = logFiles[logFiles.length - 1]
+    logFile = logFiles[logFiles.length - 1]
     // Valida si existe el archivo
     if(logFile != null) {
         console.log('Ultimo archivo modificado: ' + logFile);
@@ -102,6 +109,10 @@ function saveLog(mensaje) {
     } else {
         logFile = 'check-0.log';
     }
+}
+
+// Funcion que escribe un mensaje sobre un archivo de Log
+function saveLog(mensaje) {
     // Escribe el mensaje sobre el archivo de Log
     fs.appendFile(pathDirLogs + logFile, mensaje, function (err) {
         if (err) console.log('Error al escribir mensaje sobre archivo de Log ' + logFile);
